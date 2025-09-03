@@ -48,7 +48,7 @@ const emptyResumeData = {
 export const ResumeProvider = ({ children }) => {
     const [resumeData, setResumeData] = useState(() => {
         try {
-            const savedData = localStorage.getItem('resumeData');
+            const savedData = sessionStorage.getItem('resumeData');
             return savedData ? JSON.parse(savedData) : emptyResumeData;
         } catch (error) {
             return emptyResumeData;
@@ -56,7 +56,7 @@ export const ResumeProvider = ({ children }) => {
     });
 
     useEffect(() => {
-        localStorage.setItem('resumeData', JSON.stringify(resumeData));
+        sessionStorage.setItem('resumeData', JSON.stringify(resumeData));
     }, [resumeData]);
 
     const handleChange = (section, field, value) => {

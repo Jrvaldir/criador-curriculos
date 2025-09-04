@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
 import {
     PlusCircle, Trash2, ArrowRight, Briefcase, GraduationCap, User, BookOpen,
     Lightbulb, ArrowLeft, Download, Palette, Star, CheckCircle, Mail, Phone, Linkedin, MapPin, Loader2,
@@ -376,7 +377,7 @@ const LayoutsView = ({ setView }) => {
                         </div>
                     </div>
                     <div className="mb-8"> <h2 className="text-lg font-semibold flex items-center mb-4"><Palette className="mr-2"/> Cor de Destaque</h2> <div className="flex flex-wrap gap-3"> {templateColorOptions.map(color => ( <button key={color.id} onClick={() => setSelectedColor(color.id)} className={`w-8 h-8 rounded-full border-2 transition-transform transform hover:scale-110 ${selectedColor === color.id ? 'border-blue-500 scale-110' : 'border-transparent'}`} style={{ backgroundColor: color.hex }}></button> ))} </div> </div>
-                    <button onClick={() => setShowAd(true)} disabled={isDownloading} className="w-full flex items-center justify-center bg-blue-600 text-white py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors text-lg font-semibold disabled:bg-blue-400 disabled:cursor-not-allowed"> {isDownloading ? ( <><Loader2 size={20} className="mr-2 animate-spin" /> A gerar PDF...</> ) : ( <><Download size={20} className="mr-2" /> Descarregar PDF</> )} </button>
+                    <button onClick={() => setShowAd(true)} disabled={isDownloading} className="w-full flex items-center justify-center bg-blue-600 text-white py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors text-lg font-semibold disabled:bg-blue-400 disabled:cursor-not-allowed"> {isDownloading ? ( <><Loader2 size={20} className="mr-2 animate-spin" /> A gerar PDF...</> ) : ( <><Download size={20} className="mr-2" /> Baixar Currículo</> )} </button>
                     <div className="h-24 mt-8 bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 rounded-lg"> Banner de Anúncio </div>
                 </aside>
                 <main ref={mainContainerRef} className="flex-1 p-4 md:p-8 flex-col items-center overflow-auto min-w-0 hidden md:flex bg-gray-200 dark:bg-gray-800">
@@ -793,6 +794,7 @@ export default function App() {
                     {renderCurrentView()}
                 </div>
             </ResumeProvider>
+            <Analytics/>
         </>
     );
 }
